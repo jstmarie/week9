@@ -4,12 +4,6 @@ podTemplate(yaml: '''
     metadata:
       namespace: staging
     spec:
-      replicas: 5
-      strategy:
-        type: RollingUpdate
-        rollingUpdate:
-          maxUnavailable: 25%
-          maxSurge: 0
       containers:
       - name: gradle
         image: gradle:jdk8
@@ -17,12 +11,6 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 99d
-        ports:
-        - containerPort: 8080
-        readinessProbe:
-          httpGet:
-             path: /sum?a=1&b=2
-             port: 8080
       restartPolicy: Never
 ''') {
   node(POD_LABEL) {
