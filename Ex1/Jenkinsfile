@@ -28,11 +28,15 @@ podTemplate(yaml: '''
           '''
         }
 
-        stage('test div command') {
+        stage('test sum command') {
           sh '''
           /usr/bin/test $(curl calculator-service:8080/sum?a=6\\&b=2) -eq 8 && echo '6+2=8 - pass' || '6+2!=8 fail'
-          /usr/bin/test $(curl calculator-service:8080/div?a=6\\&b=2) -eq 3 && echo '6/2=3 - pass' || '6/2!=3 fail'
+          '''
+        }
 
+        stage('test div command') {
+          sh '''
+          /usr/bin/test $(curl calculator-service:8080/div?a=6\\&b=2) -eq 3 && echo '6/2=3 - pass' || '6/2!=3 fail'
           DIVIDEBYZERO="$(curl calculator-service:8080/div?a=6\\&b=0)"
           
           if [ "$DIVIDEBYZERO" = "Division by 0" ]; then
