@@ -79,12 +79,14 @@ podTemplate(yaml: '''
 
       container('cloud-sdk') {
         stage('Deploy to Prod - GKE') {
-            sh '''
-            cd Ex2
-            gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
-            gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
-            kubectl get ns
-            '''
+          sh '''
+          echo 'namespaces in the staging environment'
+          kubectl get ns
+          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+          gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
+          echo 'namespaces in the prod environment'
+          kubectl get ns
+          '''
         }
       }
 
