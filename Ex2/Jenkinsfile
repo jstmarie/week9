@@ -82,20 +82,23 @@ podTemplate(yaml: '''
           cd Ex2/Chapter09/sample3
           chmod +x gradlew
           ./gradlew smokeTest -Dcalculator.url=http://calculator-service:8080
-          #mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
-
-          #./gradlew smokeTest
           '''
         }
 
         }
       }
 
-    //   container('cloud-sdk') {
-    //     stage('Deploy to Prod - GKE') {
-            
-    //     }
-    //   }
+      container('cloud-sdk') {
+        stage('Deploy to Prod - GKE') {
+            sh '''
+            gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+            gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
+            pws
+            ls
+            kubectl -v
+            '''
+        }
+      }
     }
   }
 }
