@@ -11,13 +11,13 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 99d
-      restartPolicy: Never
+      #restartPolicy: Never
       - name: cloud-sdk
-      image: google/cloud-sdk
-      command:
-      - sleep
-      args:
-      - 9999999
+        image: google/cloud-sdk
+        command:
+        - sleep
+        args:
+        - 9999999
       volumeMounts:
       - name: shared-storage
         mountPath: /mnt
