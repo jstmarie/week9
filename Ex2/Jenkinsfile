@@ -104,8 +104,8 @@ podTemplate(yaml: '''
           cd Ex2
           gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
           gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
-          kubectl apply -f hazelcast.yaml
-          kubectl apply -f calculator.yaml
+          kubectl apply -f hazelcast.yaml -n default
+          kubectl apply -f calculator.yaml -n default
           '''
         }
       }
