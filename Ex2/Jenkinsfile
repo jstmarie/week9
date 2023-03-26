@@ -78,11 +78,24 @@ podTemplate(yaml: '''
         }
 
         stage('smoke test') {
+          sh '''
+          cd Ex2/Chapter09/sample3
+          chmod +x gradlew
+          ./gradlew smokeTest
+          #mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 
+          #./gradlew smokeTest
+          '''
         }
 
         }
       }
+
+    //   container('cloud-sdk') {
+    //     stage('Deploy to Prod - GKE') {
+            
+    //     }
+    //   }
     }
   }
 }
