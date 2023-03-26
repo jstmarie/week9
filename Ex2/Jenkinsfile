@@ -61,7 +61,7 @@ podTemplate(yaml: '''
           try {
             sh '''
             sleep 5
-            /usr/bin/test $(curl calculator-servic.staging.svc.cluster.local:8080/div?a=6\\&b=2) -eq 3 && echo '6/2=3 - pass' || '6/2!=3 fail'
+            /usr/bin/test $(curl calculator-service.staging.svc.cluster.local:8080/div?a=6\\&b=2) -eq 3 && echo '6/2=3 - pass' || '6/2!=3 fail'
             DIVIDEBYZERO="$(curl calculator-service.staging.svc.cluster.local:8080/div?a=6\\&b=0)"
           
             if [ "$DIVIDEBYZERO" = "Division by 0" ]; then
@@ -80,7 +80,7 @@ podTemplate(yaml: '''
       container('cloud-sdk') {
         stage('Deploy to Prod - GKE') {
             sh '''
-            pws
+            pwd
             ls
             kubectl -v
             gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
