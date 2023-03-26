@@ -38,20 +38,20 @@ podTemplate(yaml: '''
 ''') {
   node(POD_LABEL) {
 
-    stage('Deploying to prod') {
-      container('cloud-sdk') {
-        stage('Build a gradle project') {
-          sh '''
-          echo 'namespaces in the staging environment'
-          kubectl get ns
-          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
-          gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
-          echo 'namespaces in the prod environment'
-          kubectl get ns
-          '''
-        }
-      }
-    }
+    // stage('Deploying to prod') {
+    //   container('cloud-sdk') {
+    //     stage('Build a gradle project') {
+    //       sh '''
+    //       echo 'namespaces in the staging environment'
+    //       kubectl get ns
+    //       gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+    //       gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
+    //       echo 'namespaces in the prod environment'
+    //       kubectl get ns
+    //       '''
+    //     }
+    //   }
+    // }
 
 
 
@@ -98,18 +98,18 @@ podTemplate(yaml: '''
 
       }
 
-      container('cloud-sdk') {
-        stage('Deploy to Prod - GKE') {
-          sh '''
-          echo 'namespaces in the staging environment'
-          kubectl get ns
-          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
-          gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
-          echo 'namespaces in the prod environment'
-          kubectl get ns
-          '''
-        }
-      }
+      // container('cloud-sdk') {
+      //   stage('Deploy to Prod - GKE') {
+      //     sh '''
+      //     echo 'namespaces in the staging environment'
+      //     kubectl get ns
+      //     gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+      //     gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
+      //     echo 'namespaces in the prod environment'
+      //     kubectl get ns
+      //     '''
+      //   }
+      // }
 
       
     }
