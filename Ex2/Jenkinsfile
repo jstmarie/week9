@@ -81,7 +81,7 @@ podTemplate(yaml: '''
           sh '''
           cd Ex2/Chapter09/sample3
           chmod +x gradlew
-          ./gradlew smokeTest
+          ./gradlew smokeTest -Dcalculator.url=http://calculator-service:8080
           #mv ./build/libs/calculator-0.0.1-SNAPSHOT.jar /mnt
 
           #./gradlew smokeTest
