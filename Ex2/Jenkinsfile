@@ -11,28 +11,6 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 99d
-        restartPolicy: Never
-      - name: cloud-sdk
-        image: google/cloud-sdk
-        command:
-          - sleep
-        args:
-          - 9999999
-        volumeMounts:
-        - name: shared-storage
-          mountPath: /mnt
-        - name: google-cloud-key
-          mountPath: /var/secrets/google
-        env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/secrets/google/umls23-1fd328cc3b0f.json    
-        volumes:
-        - name: shared-storage
-          persistentVolumeClaim:
-          claimName: jenkins-pv-claim
-        - name: google-cloud-key
-          secret:
-          secretName: sdk-key
       restartPolicy: Never
 ''') {
   node(POD_LABEL) {
