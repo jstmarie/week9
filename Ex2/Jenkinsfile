@@ -28,9 +28,9 @@ podTemplate(yaml: '''
         - name: GOOGLE_APPLICATION_CREDENTIALS
           value: /var/secrets/google/umls23-1fd328cc3b0f.json  
       volumes:
-      - name: shared-storage
-        persistentVolumeClaim:
-          claimName: jenkins-pv-claim
+      #- name: shared-storage
+      #  persistentVolumeClaim:
+      #    claimName: jenkins-pv-claim
       - name: google-cloud-key
         secret:
           secretName: sdk-key
