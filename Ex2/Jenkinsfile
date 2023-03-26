@@ -3,6 +3,8 @@ podTemplate(yaml: '''
     kind: Pod
     metadata:
       namespace: staging
+      name: cloud-sdk
+        namespace: devops-tools
     spec:
       containers:
       - name: gradle
@@ -18,6 +20,7 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 9999999
+
       volumeMounts:
       - name: shared-storage
         mountPath: /mnt
@@ -91,11 +94,11 @@ podTemplate(yaml: '''
       container('cloud-sdk') {
         stage('Deploy to Prod - GKE') {
             sh '''
-            gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
-            gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
             pws
             ls
             kubectl -v
+            gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+            gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
             '''
         }
       }
