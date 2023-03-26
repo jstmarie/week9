@@ -20,8 +20,8 @@ podTemplate(yaml: '''
         args:
         - 9999999
         volumeMounts:
-        - name: shared-storage
-          mountPath: /mnt
+        #- name: shared-storage
+        #  mountPath: /mnt
         - name: google-cloud-key
           mountPath: /var/secrets/google
         env:
