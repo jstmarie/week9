@@ -42,7 +42,7 @@ podTemplate(yaml: '''
       container('cloud-sdk') {
         stage('Build a gradle project') {
           sh '''
-          echo $GOOGLE_APPLICATION_CREDENTIALS
+          ls -l $GOOGLE_APPLICATION_CREDENTIALS
           kubectl get ns
           gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
           gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
