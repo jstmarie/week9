@@ -36,6 +36,26 @@ podTemplate(yaml: '''
         secretName: sdk-key
 ''') {
   node(POD_LABEL) {
+
+    stage('Deploying to prod') {
+      container('cloud-sdk') {
+        stage('Build a gradle project') {
+          sh '''
+          echo 'namespaces in the staging environment'
+          kubectl get ns
+          gcloud auth login --cred-file=$GOOGLE_APPLICATION_CREDENTIALS
+          gcloud container clusters get-credentials umls23 --region us-east1 --project umls23-381716
+          echo 'namespaces in the prod environment'
+          kubectl get ns
+          '''
+        }
+      }
+    }
+
+
+
+
+
     stage('Deploy Calculator') {
       git branch: 'main', url: 'https://github.com/jstmarie/week9.git'
       container('gradle') {
