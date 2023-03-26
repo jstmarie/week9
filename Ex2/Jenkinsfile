@@ -25,15 +25,15 @@ podTemplate(yaml: '''
           mountPath: /var/secrets/google
         env:
         - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/secrets/google/umls23-1fd328cc3b0f.json
+          value: /var/secrets/google/umls23-1fd328cc3b0f.json  
+      volumes:
+      - name: shared-storage
+        persistentVolumeClaim:
+          claimName: jenkins-pv-claim
+      - name: google-cloud-key
+        secret:
+          secretName: sdk-key
     restartPolicy: Never
-    volumes:
-    - name: shared-storage
-      persistentVolumeClaim:
-        claimName: jenkins-pv-claim
-    - name: google-cloud-key
-      secret:
-        secretName: sdk-key
 ''') {
   node(POD_LABEL) {
 
