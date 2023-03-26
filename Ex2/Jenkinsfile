@@ -1,10 +1,6 @@
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
-    metadata:
-      namespace: staging
-      name: cloud-sdk
-        namespace: devops-tools
     spec:
       containers:
       - name: gradle
@@ -20,7 +16,6 @@ podTemplate(yaml: '''
         - sleep
         args:
         - 9999999
-
       volumeMounts:
       - name: shared-storage
         mountPath: /mnt
